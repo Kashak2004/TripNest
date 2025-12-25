@@ -1,0 +1,29 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row">
+  <%- include("../includes/adminSidebar") %>
+
+  <div class="col-10 p-4">
+    <h2>Manage Users</h2>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
