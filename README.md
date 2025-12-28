@@ -5,7 +5,7 @@ The application is built using the **MEN stack (MongoDB, Express.js, Node.js)** 
 It is fully responsive and deployed on **Render**.
 
  
-🔗 Live Demo:👉 **https://tripnest-63ox.onrender.com**
+🔗 Live Demo:👉 https://tripnest-630x.onrender.com
 
  ✨ Key Features
 
