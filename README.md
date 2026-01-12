@@ -1,7 +1,7 @@
 🏡 TripNest
 
 TripNest is a full-stack web application inspired by Airbnb that allows users to explore, list, and manage rental properties.  
-The application is built using the **MEN stack (MongoDB, Express.js, Node.js)** with **EJS** for server-side rendering and follows the **MVC (Model–View–Controller)** architecture.  
+The application is built using the **MERN stack (MongoDB, Express.js, Node.js)** with **EJS** for server-side rendering and follows the **MVC (Model–View–Controller)** architecture.  
 It is fully responsive and deployed on **Render**.
 
  
