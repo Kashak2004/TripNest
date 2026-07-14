@@ -7,7 +7,7 @@
 
     <form
       method="POST"
-      action="/listings"          
+      action="/listings"
       enctype="multipart/form-data"
       novalidate
       class="needs-validation"
@@ -41,13 +41,12 @@
         <label for="image" class="form-label">Upload Listing Image</label>
         <input
           id="image"
-          name="image"            
+          name="image"
           type="file"
           class="form-control"
           accept="image/*"
           required
         />
-        
       </div>
 
       <div class="row">
@@ -88,6 +87,19 @@
           required
         />
         <div class="invalid-feedback">Please enter the location</div>
+        <select name="listing[category]" class="form-select" required>
+          <option>Trending</option>
+          <option>Rooms</option>
+          <option>Iconic Cities</option>
+          <option>Mountains</option>
+          <option>Castles</option>
+          <option>Amazing Pools</option>
+          <option>Camping</option>
+          <option>Farms</option>
+          <option>Arctic</option>
+          <option>Domes</option>
+          <option>Boats</option>
+        </select>
       </div>
 
       <button class="btn btn-dark add-btn mt-3">Add</button>
