@@ -1,48 +1,94 @@
 <% layout("listings/layouts/boilerplate") %>
 
-<!--<h3>All Listings</h3>-->
-<!-- <form method="GET" action="/listings/new">
-     <button>Create New Listing</button>
-</form> -->
-
 <style>
     #filters{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin:1.5rem 0;
+}
 
-    .filter{
-        text-align: center;
-        margin-right: 2rem;
-        margin-top: 2rem ;
-        opacity: 0.7;
-    }
+.filter-container{
+    display:flex;
+    align-items:center;
+    gap:1.4rem;
 
-    .filter:hover {
-        opacity: 1;
-        cursor: pointer;
-    }
-    .filter p {
-        font-size: 0.8rem;
-    }
+    flex:1;
+    overflow-x:auto;
+    scroll-behavior:smooth;
 
-    .tax-info {
-        display: none;
-    }
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
 
-    .tax-toggle {
-        border:1px solid black;
-        border-radius: 1rem;
-        height: 3.25rem;
-        padding:1rem;
-        margin-left:2rem;
-        display: flex;
-        align-items: center;
-    }
+.filter-container::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    text-align:center;
+    opacity:.7;
+    min-width:75px;
+    flex-shrink:0;
+}
+
+.filter:hover{
+    opacity:1;
+    cursor:pointer;
+}
+
+.filter p{
+    margin-bottom:0;
+    font-size:.82rem;
+}
+
+.tax-toggle{
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    margin-left:.5rem;
+}
+
+.tax-toggle .form-check{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    margin:0;
+}
+
+.scroll-btn{
+    width:36px;
+    height:36px;
+    border:1px solid #ddd;
+    border-radius:50%;
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+    transition:.2s;
+}
+
+.scroll-btn:hover{
+    background:#f5f5f5;
+}
+
+.scroll-btn i{
+    font-size:12px;
+}
+
 </style>
 
 <div id="filters">
+
+     <button class="scroll-btn left-btn">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+     <div class="filter-container">
+
     <div class="filter">
        <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
@@ -87,12 +133,19 @@
        <div><i class="fa-solid fa-ship"></i></div>
         <p>Boats</p>
     </div>
+    </div>
+
+    <button class="scroll-btn right-btn">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
     <div class="tax-toggle">
-        <div class="form-check-reverse form-switch">
+        <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
             <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
         </div>
     </div>
+
 </div>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <% for(let listing of allListings) { %>
@@ -124,7 +177,44 @@
             }else{
                 info.style.display = "none";
             }
-
         }
     });
+
+     const filterContainer = document.querySelector(".filter-container");
+    const leftBtn = document.querySelector(".left-btn");
+    const rightBtn = document.querySelector(".right-btn");
+
+    function updateButtons() {
+
+        leftBtn.style.visibility =
+            filterContainer.scrollLeft <= 5
+            ? "hidden"
+            : "visible";
+
+        rightBtn.style.visibility =
+            filterContainer.scrollLeft >=
+            filterContainer.scrollWidth -
+            filterContainer.clientWidth - 5
+            ? "hidden"
+            : "visible";
+    }
+
+    leftBtn.addEventListener("click", () => {
+        filterContainer.scrollBy({
+            left: -250,
+            behavior: "smooth"
+        });
+    });
+
+    rightBtn.addEventListener("click", () => {
+        filterContainer.scrollBy({
+            left: 250,
+            behavior: "smooth"
+        });
+    });
+
+    filterContainer.addEventListener("scroll", updateButtons);
+
+    window.addEventListener("load", updateButtons);
+
 </script>
